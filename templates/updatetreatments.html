@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+<title>Update Treatments</title>
+{% block main %}
+
+<div class=""   style="margin-top:5%">
+    {% for t in tdata %}
+    <form method="post" class="col-6 mx-auto card card-body my-3">
+            {% csrf_token %}
+        <h1 class="my-3">Update Treatments</h1>
+        {% if messages %}
+                  
+              {% for message in messages %}
+              <div id="alert-container" class="alert alert-info" role="alert">
+                  {{ message }}
+                  
+              {% endfor %}
+              </div>
+
+              <script>
+              // Add a script to automatically dismiss the alert after 2000 milliseconds (2 seconds)
+              setTimeout(function() {
+                  document.getElementById('alert-container').style.display = 'none';
+              }, 5000);
+              </script>
+              {% endif %}
+        <hr>
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="tname" placeholder="Enter the Treatment Name" value={{t.tname}}>
+
+        <label class="form-label">Charge</label>
+        <input type="number" class="form-control" name="tcharge" placeholder="Enter the Charges" value={{t.tcharge}}>
+        
+        <label class="form-label">Information</label>
+        <textarea rows="3" class="form-control" name="tinfo" placeholder="Enter the Information">{{t.tinfo}}</textarea>
+        
+        
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary my-3">Update Treatment</button>
+        </div>
+    </form>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock main %}

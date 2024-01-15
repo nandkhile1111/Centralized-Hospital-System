@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Appointment History</title>
+ 
+
+  
+
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">CENTRALIZED HOSPITAL SYSTEM</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/adduserinfo">Add Info <span class="sr-only"></span></a>
+        </li>
+        
+        
+        
+       
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a class="btn btn-success mx-3" href="/appointmenthistory">Appointment History </a>
+        <a class="btn btn-danger mx-3" href="/handlelogout">Logout</a>
+      </form>
+      
+    </div>
+  </nav>
+
+
+
+
+
+
+    <div class="">
+        <div class="container card card-body my-3">
+            <h1 class="text-center my-3" >Appointment History</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>SR.NO</th>
+                    <th>NAME</th>
+                    <th>PHONE NO</th>
+                    <th>DISEASE</th>
+                    <th>DOCTER NAME</th>
+                    <th>HOSPITAL NAME</th>
+                    
+                   
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for a in adata %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{a.pname}}</td>
+                    <td>{{a.pnumber}}</td>
+                    <td>{{a.disease}}</td>
+                    <td>{{a.doctorname}}</td>
+                    <td>{{a.hname}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+    </div>
+</body>
+</html>

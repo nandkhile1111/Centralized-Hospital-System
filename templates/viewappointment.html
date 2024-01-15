@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+<title>View Appointment</title>
+{% block main %}
+
+<div class=""   style="margin-top:5%">
+    <div class="container card card-body my-3">
+        <h1 class="text-center my-3" >View Appointment</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>SR.NO</th>
+                    <th>NAME</th>
+                    <th>PHONE NO</th>
+                    <th>DISEASE</th>
+                    <th>DOCTER NAME</th>
+                    
+                   
+                   
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for a in adata %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{a.pname}}</td>
+                    <td>{{a.pnumber}}</td>
+                    <td>{{a.disease}}</td>
+                    <td>{{a.doctorname}}</td>
+                    
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock main %}

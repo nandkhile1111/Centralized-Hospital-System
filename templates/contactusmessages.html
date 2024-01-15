@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+<title>List Equiry</title>
+{% block main %}
+
+<div class=""  style="margin-top:5%">
+    <div class="container card card-body my-3">
+        <h1 class="text-center my-3" >List of Contactus Message</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>SR.NO</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                    <th>SUBJECT</th>
+                    <th>MESSAGE</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for c in cdata %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.email}}</td>
+                    <td>{{c.subject}}</td>
+                    <td>{{c.message}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock main %}

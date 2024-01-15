@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+<title>Add Doctors</title>
+{% block main %}
+
+<div class=""  style="margin-top:5%">
+    <form method="post" class="col-6 mx-auto card card-body my-3">
+            {% csrf_token %}
+        <h1 class="my-3">Add Doctors</h1>
+        {% if messages %}
+                  
+              {% for message in messages %}
+              <div id="alert-container" class="alert alert-info" role="alert">
+                  {{ message }}
+                  
+              {% endfor %}
+              </div>
+
+              <script>
+              // Add a script to automatically dismiss the alert after 2000 milliseconds (2 seconds)
+              setTimeout(function() {
+                  document.getElementById('alert-container').style.display = 'none';
+              }, 5000);
+              </script>
+              {% endif %}
+        <hr>
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="dname" placeholder="Enter the Doctor Name">
+
+        <label class="form-label">DOB</label>
+        <input type="date" class="form-control" name="ddob" placeholder="Enter the Doctor Age">
+
+        
+        <label class="form-label">Degree</label>
+        <input type="text" class="form-control" name="ddegree" placeholder="Enter the Doctor Degree">
+        
+        <label class="form-label">Specialization</label>
+        <input type="text" class="form-control" name="dspecialization" placeholder="Enter the Doctor Specialization">
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary my-3">Add Doctor</button>
+        </div>
+    </form>
+        
+
+
+    </div>
+
+{% endblock main %}

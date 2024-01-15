@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+<title>List Doctors</title>
+{% block main %}
+
+
+<div class="container card"  style="margin-top:5%">
+    <div class="row">
+        {% for ps in psdata %}
+
+        
+        <div class="col-6">
+            <div class="text-left">
+               <h3>{{ ps.sname }}</h3> 
+            </div>
+
+            <div class="mt-2">
+                {% if ps.simage %}
+                <img src="{{ ps.simage.url }}" alt="{{ ps.sname }}" style="max-width: 600px; max-height: 600px;">                {% else %}
+                    No Image Available
+                {% endif %}
+            </div>
+            
+        </div>
+
+        <div class="col-6" >
+            <h2>About </h2>
+            <div class="card" style="margin-right: 10%;">
+                {{ps.sabout}}
+            </div>
+
+            <br><br>
+            {% if request.user.is_staff %}
+            <div class="d-flex justify-content-end" style="margin-right: 75%;">
+                <a class="btn btn-danger" href="deletespecialties/{{ ps.id }}">DELETE</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-success " href="updatespecialties/{{ ps.id }}">EDIT</a>
+            </div>
+            {% endif %}
+            
+            
+
+        </div>
+
+    
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock main %}

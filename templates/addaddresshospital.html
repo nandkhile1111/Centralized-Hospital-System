@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+<title>Add Address</title>
+{% block main %}
+
+<div class=""   style="margin-top:5%">
+    <form method="post" class="col-6 mx-auto card card-body my-3">
+            {% csrf_token %}
+        <h1 class="my-3">Add Hospital Address</h1>
+        {% if messages %}
+                  
+              {% for message in messages %}
+              <div id="alert-container" class="alert alert-info" role="alert">
+                  {{ message }}
+                  
+              {% endfor %}
+              </div>
+
+              <script>
+              // Add a script to automatically dismiss the alert after 2000 milliseconds (2 seconds)
+              setTimeout(function() {
+                  document.getElementById('alert-container').style.display = 'none';
+              }, 5000);
+              </script>
+              {% endif %}
+        <hr>
+        <label class="form-label">Building Name</label>
+        <input type="text" class="form-control" name="ahbname" placeholder="Enter the Building Name">
+
+        <label class="form-label">Street Name</label>
+        <input type="text" class="form-control" name="ahsname" placeholder="Enter the Street Name">
+
+        <label class="form-label">City Name</label>
+        <input type="text" class="form-control" name="ahcname" placeholder="Enter the City Name">
+
+        <label class="form-label">Postal Code</label>
+        <input type="number" class="form-control" name="ahpostalcode" placeholder="Enter the Postal Code">
+
+        
+
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary my-3">Add Address</button>
+        </div>
+    </form>
+        
+
+
+    </div>
+
+{% endblock main %}

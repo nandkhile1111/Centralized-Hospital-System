@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+<title>Make Appointment</title>
+{% block main %}
+
+<div class=""   style="margin-top:5%">
+    <form method="post" class="col-6 mx-auto card card-body my-3">
+            {% csrf_token %}
+        <h1 class="my-3">Make Appointment</h1>
+        {% if messages %}
+                  
+              {% for message in messages %}
+              <div id="alert-container" class="alert alert-info" role="alert">
+                  {{ message }}
+                  
+              {% endfor %}
+              </div>
+
+              <script>
+              // Add a script to automatically dismiss the alert after 2000 milliseconds (2 seconds)
+              setTimeout(function() {
+                  document.getElementById('alert-container').style.display = 'none';
+              }, 5000);
+              </script>
+              {% endif %}
+        <hr>
+        {% for pdata in pdata%}
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="pname" value="{{pdata.pname}}" placeholder="Enter the Your Name" required>
+
+        <label class="form-label">Phone Number</label>
+        <input type="number" class="form-control" name="pnumber" value="{{pdata.pphone}}" placeholder="Enter the Your phone number" required>
+        {% endfor %}
+
+        <label class="form-label">Disease</label>
+        <input type="text" class="form-control" name="disease" placeholder="Enter the Disease Name">
+
+        <label for="doctor">Doctor</label>
+                <div class="form-group">
+                <select class="form-control" id="doctorname" name="doctorname">
+                   <option value="" disabled selected>Select Doctor</option>
+                   {% for ddata in ddata%}
+                    <option value="{{ddata.dname}}">{{ddata.dname}}</option>
+                    {% endfor %}
+                    
+                </select>
+                </div>
+        
+    
+
+        
+
+
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary my-3">Make Appointment</button>
+        </div>
+    </form>
+        
+
+
+    </div>
+
+{% endblock main %}

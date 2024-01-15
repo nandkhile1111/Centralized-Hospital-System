@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+<title>List Doctors</title>
+{% block main %}
+
+<div class=""  style="margin-top:5%">
+    <div class="container card card-body my-3">
+        <h1 class="text-center my-3" >List of Doctors</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>SR.NO</th>
+                    <th>DID</th>
+                    <th>NAME</th>
+                    <th>AGE</th>
+                    <th>DEGREE</th>
+                    <th>SPECIALIZATION</th>
+                    {% if request.user.is_staff %}
+                    <th colspan="2">ACTION</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for d in ddata %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{d.id}}</td>
+                    <td>{{d.dname}}</td>
+                    <td>{{d.dage}}</td>
+                    <td>{{d.ddegree}}</td>
+                    <td>{{d.dspecialization}}</td>
+                    {% if request.user.is_staff %}
+                    <td >
+                        <a href="deletedoctor/{{d.id}}" class="btn btn-danger">DELETE</a>
+                    </td>
+                    <td>
+                        <a href="updatedoctor/{{d.id}}" class="btn btn-success">EDIT</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock main %}

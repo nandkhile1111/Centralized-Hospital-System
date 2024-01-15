@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+<title>Add Hospital Basic Inforamtion</title>
+{% block main %}
+
+<div class="card"   style="margin-top:5%">
+    {% for hdata in hdata %}
+    <form method="post" class="col-6 mx-auto card card-body my-3" enctype="multipart/form-data">
+            {% csrf_token %}
+        <h1 class="my-3">Add Hospital Basic Inforamtion</h1>
+        {% if messages %}
+                  
+              {% for message in messages %}
+              <div id="alert-container" class="alert alert-info" role="alert">
+                  {{ message }}
+                  
+              {% endfor %}
+              </div>
+
+              <script>
+              // Add a script to automatically dismiss the alert after 2000 milliseconds (2 seconds)
+              setTimeout(function() {
+                  document.getElementById('alert-container').style.display = 'none';
+              }, 5000);
+              </script>
+              {% endif %}
+        <hr>
+        <label class="form-label">Hospital Name</label>
+        <input type="text" class="form-control" name="hname" placeholder="Enter the Doctor Name">
+
+        <label class="form-label">Hospital Image</label>
+        <input type="file" class="form-control" name="himage">
+
+        <label class="form-label">Hospital Number</label>
+        <input type="number" class="form-control" name="hnumber" placeholder="Enter the Helpline number">
+
+        <label class="form-label">Hospital Open time</label>
+        <input type="time" class="form-control" name="hopentime" placeholder="Enter the Open time">
+
+        <label class="form-label">Hospital Close time</label>
+        <input type="time" class="form-control" name="hclosetime" placeholder="Enter the Close time">
+
+        
+
+        
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" name="hemail" placeholder="Enter the Hospital Email">
+        
+        
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary my-3">Add Information</button>
+        </div>
+    </form>
+    {% endfor %}
+        
+
+
+    </div>
+
+{% endblock main %}

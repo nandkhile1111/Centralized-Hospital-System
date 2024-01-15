@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title>Update Doctors</title>
+
+{% block main %}
+
+<div class=""   style="margin-top:5%">
+    {% for pddata in pddata %}
+    <form method="post" class="col-6 mx-auto card card-body my-3">
+            {% csrf_token %}
+        <h1 class="my-3">Update Doctors</h1>
+        <hr>
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="dname" placeholder="Enter the Doctor Name" value={{pddata.dname}}>
+
+        <label class="form-label">DOB</label>
+        <input type="date" class="form-control" name="ddob" placeholder="Enter the Doctor Age" value={{pddata.ddob}}>
+
+        
+        <label class="form-label">Degree</label>
+        <input type="text" class="form-control" name="ddegree" placeholder="Enter the Doctor Degree" value={{pddata.ddegree}}>
+        
+        <label class="form-label">Specialization</label>
+        <input type="text" class="form-control" name="dspecialization" placeholder="Enter the Doctor Specialization" value={{pddata.dspecialization}}>
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary my-3">Update Doctor</button>
+        </div>
+    </form>
+    {% endfor %}
+        
+
+
+    </div>
+
+{% endblock main %}

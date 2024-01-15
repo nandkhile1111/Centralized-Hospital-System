@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>CentralizedHospital</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <title>
+    {% block title %}
+    {% for hdata in hdata %}
+      {{hdada.hname}}
+      {% endfor %}
+    {% endblock title %}
+  </title>
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Medicio
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> {% for hdata in hdata %}{{hdata.hopentime}} to {{hdata.hclosetime}}{% endfor %} 
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-phone"></i> Call us now  {% for hdata in hdata %}{{hdata.hnumber}}{% endfor %} 
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      {% if request.user.is_staff %}
+        {% for hdata in hdata %}
+        <a href="/index" class="logo me-auto">{{hdata.hname}}</a>
+        {% endfor %}
+      {% else %}
+        {% for hdata in hdata %}
+        <a class="logo me-auto">{{hdata.hname}}</a>
+        {% endfor %}
+      {% endif %}
+
+      
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+      
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          {% if request.user.is_staff %}
+          <li><a class="nav-link scrollto " href="index">Home</a></li>
+          {% endif %}
+          <li><a class="nav-link scrollto" href="/listabouthospital">About</a></li>
+          <li><a class="nav-link scrollto" href="/listtreatments">Treatments</a></li>
+          <li><a class="nav-link scrollto" href="/listspecialties">List Specialties</a></li>   
+          <li><a class="nav-link scrollto" href="/listdoctors">Doctors</a></li>
+          {% if not request.user.is_staff %}
+          <li><a class="nav-link scrollto" href="/contactus">Contact</a></li>
+          {% endif %}
+          {% if request.user.is_staff %}
+          <li><a class="nav-link scrollto" href="/contactusmessages">Messages</a></li>
+          {% endif %}
+
+          {% if request.user.is_staff %}
+          <li class="dropdown"><a><span>Add Hospital Info</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+               <!-- <li><a href="/addabouthospitalinfo">Add Information</a></li> -->
+                <li><a href="/updateabouthospitalinfo">Update Information</a></li>
+                <li><a href="/addabouthospital">Add About</a></li>
+                <li><a href="/addaddresshospital">Add Address</a></li>
+                <li><a href="/addspecialties">Add Specialties</a></li>
+                <li><a href="/adddoctors">Add Doctors</a></li>
+                <li><a href="/addtreatments">Add Treatments</a></li>
+            </ul>
+          {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+     
+      {% if request.user.is_staff %}
+        <a href="/viewappointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">View</span> Appointment</a>
+      {% else %}
+        <a href="/makeappointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+
+      {% endif %}
+
+      {% if request.user.is_staff %}
+        <a class="btn btn-danger mx-3" href="/handlelogout">Logout</a>
+      {% else %}
+        <a class="btn btn-danger mx-3" href="/userindexpage">go back</a>
+      {% endif %}
+      
+    </div>
+  </header><!-- End Header --><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        {% block main %}
+        {% for hdata in hdata %}
+        <div class="carousel-item active" style="background-image: url('{{ hdata.himage.url }}')">
+        
+          
+        </div>
+        {% endfor %}
+        {% endblock main %}
+        
+
+       
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Featured Services Section ======= -->
+    
+
+    <!-- ======= Cta Section ======= -->
+    
+
+    <!-- ======= About Us Section ======= -->
+    
+    <!-- End About Us Section -->
+
+    <!-- ======= Counts Section ======= -->
+    
+    <!-- End Counts Section -->
+
+    <!-- ======= Features Section ======= -->
+    
+    <!-- End Features Section -->
+
+    <!-- ======= Services Section ======= -->
+    
+    <!-- End Services Section -->
+
+    <!-- ======= Appointment Section ======= -->
+    <!-- End Appointment Section -->
+
+    <!-- ======= Departments Section ======= -->
+    <!-- End Departments Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    
+    
+
+    <!-- End Testimonials Section -->
+
+    <!-- ======= Doctors Section ======= -->
+
+    <!-- End Doctors Section -->
+
+    <!-- ======= Gallery Section ======= -->
+    
+    <!-- End Gallery Section -->
+
+    <!-- ======= Pricing Section ======= -->
+    <!-- End Pricing Section -->
+
+    <!-- ======= Frequently Asked Questioins Section ======= -->
+
+    <!-- End Frequently Asked Questioins Section -->
+
+    <!-- ======= Contact Section ======= -->
+    
+    <!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" >
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-8 col-md-6">
+            <div class="footer-info">
+              {% for hdata in hdata %}
+                <h3>{{hdata.hname}}</h3>
+              {% endfor %}
+              
+              {% for hadata in hadata %}
+                {{hadata.ahbname}} {{hadata.ahsname}}<br>
+                {{hadata.ahcname}} {{hadata.ahpostalcode}}
+              {% endfor %}
+              <p>
+                
+                <strong>Phone:</strong>
+                {% for hdata in hdata %}
+                {{hdata.hnumber}}
+                {% endfor %}
+                <br>
+                <strong>Email:</strong> 
+                {% for hdata in hdata %}
+                {{hdata.hemail}}
+                {% endfor %}
+                <br>
+              </p>
+              
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+         
+
+          
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>CentralizedHospital</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medicio-free-bootstrap-theme/ -->
+        Designed by <a href="https://bootstrapmade.com/">Aditya</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>

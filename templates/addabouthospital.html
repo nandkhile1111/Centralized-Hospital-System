@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+<title>Add Info</title>
+{% block main %}
+
+<div class=""  style="margin-top:5%">
+    <form method="post" class="col-6 mx-auto card card-body my-3" enctype="multipart/form-data">
+            {% csrf_token %}
+        <h1 class="my-3">Add Hospital Information</h1>
+        {% if messages %}
+                  
+              {% for message in messages %}
+              <div id="alert-container" class="alert alert-info" role="alert">
+                  {{ message }}
+                  
+              {% endfor %}
+              </div>
+
+              <script>
+              // Add a script to automatically dismiss the alert after 2000 milliseconds (2 seconds)
+              setTimeout(function() {
+                  document.getElementById('alert-container').style.display = 'none';
+              }, 5000);
+              </script>
+              {% endif %}
+        <hr>
+        <label class="form-label">Image</label>
+        <input type="file" class="form-control" name="ahimage" >
+
+        
+        <label class="form-label">Introduction</label>
+        <textarea rows="7" class="form-control" name="ahintroduction"></textarea>
+
+        <label class="form-label">Vision</label>
+        <textarea rows="2" class="form-control" name="ahvision"></textarea>
+
+        <label class="form-label">Mission</label>
+        <textarea rows="2" class="form-control" name="ahmission"></textarea>
+
+        
+        
+
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary my-3">Add Info</button>
+        </div>
+    </form>
+        
+
+
+    </div>
+
+{% endblock main %}

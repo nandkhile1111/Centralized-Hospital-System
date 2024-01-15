@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+<title>List Doctors</title>
+{% block main %}
+
+
+<div class="container card"  style="margin-top:5%">
+    <div class="row">
+        <h2>List of Specialties</h2>
+        {% for s in sdata %}
+        <div class="col-4">
+            <div class="card">
+                <div class="text-left">
+                    {{ s.sname }}
+                </div>
+                {% if s.simage %}
+                    <a href="/aboutspecialties/{{s.id}}"><img src="{{ s.simage.url }}" alt="{{ s.sname }}" style="max-width: 100%; max-height: 300px;"></a>
+                {% else %}
+                    No Image Available
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock main %}
